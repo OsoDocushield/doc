@@ -1,0 +1,49 @@
+{
+  "banner": {
+    "one": {
+      "img": "/img/banner/banner-2/banner3.jpg",
+      "subTitle": "Trendy Item",
+      "title": "New Year Trend Coming ",
+      "link": "discover"
+    },
+    "two": {
+      "img": "/img/banner/banner-2/banner4.jpg",
+      "subTitle": "Get the look",
+      "title": "Festive Looks",
+      "text": "Your delivery of outfit ideas, updated daily",
+      "link": "discover",
+      "lookImg": "/img/icon/look.png"
+    }
+  },
+  "imageSlider": [
+    "/img/instagram/insta1.jpg",
+    "/img/instagram/insta2.jpg",
+    "/img/instagram/insta3.jpg",
+    "/img/instagram/insta4.jpg",
+    "/img/instagram/insta5.jpg",
+    "/img/instagram/insta6.jpg"
+  ],
+  "sliders": [
+    {
+      "bg": "/img/slider/slide5.jpg",
+      "shapImg": "/img/slider/shape-icon-2.png",
+      "heading": "New Arrival",
+      "shopLink": true,
+      "categoryLink": true
+    },
+    {
+      "bg": "/img/slider/slide5-2.jpg",
+      "shapImg": "/img/slider/shape-icon-2.png",
+      "heading": "Trendy Collection",
+      "shopLink": true,
+      "categoryLink": true
+    },
+    {
+      "bg": "/img/slider/slide5-3.jpg",
+      "shapImg": "/img/slider/shape-icon-2.png",
+      "heading": "Men Collection",
+      "shopLink": true,
+      "categoryLink": true
+    }
+  ]
+}

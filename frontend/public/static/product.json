@@ -1,0 +1,600 @@
+[
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro1.jpg",
+    "img2": "/img/product/pro2.jpg",
+    "images": [
+      { "src": "/img/product/pro1.jpg" },
+      { "src": "/img/product/pro2.jpg" },
+      { "src": "/img/product/pro3.jpg" }
+    ],
+    "mainPrice": "190",
+    "colors": [],
+    "category": ["furniture", "lamp"],
+    "tags": ["furniture", "lamp"],
+    "brand": "ikea",
+    "stock": true,
+    "id": "1",
+    "new": true,
+    "sale": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro3.jpg",
+    "img2": "/img/product/pro6.jpg",
+    "images": [
+      { "src": "/img/product/pro3.jpg" },
+      { "src": "/img/product/pro6.jpg" },
+      { "src": "/img/product/pro1.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "90",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "lamp"],
+    "tags": ["furniture", "lamp"],
+    "brand": "steelcase",
+    "stock": true,
+    "id": "2",
+    "new": true,
+    "sale": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro5.jpg",
+    "img2": "/img/product/pro2.jpg",
+    "images": [
+      { "src": "/img/product/pro5.jpg" },
+      { "src": "/img/product/pro2.jpg" },
+      { "src": "/img/product/pro1.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "chair"],
+    "tags": ["furniture", "chair"],
+    "brand": "ikea",
+    "stock": false,
+    "id": "3"
+  },
+
+  {
+    "name": "Raglan Baseball Style shirt",
+    "img1": "/img/product/pro29.jpg",
+    "img2": "/img/product/pro30.jpg",
+    "images": [
+      { "src": "/img/product/pro29.jpg" },
+      { "src": "/img/product/pro30.jpg" },
+      { "src": "/img/product/pro33.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "290",
+    "discount": "20",
+    "category": ["gent", "clothing", "jacket"],
+    "tags": ["gent", "clothing", "jacket"],
+    "size": "L",
+    "brand": "nike",
+    "colors": ["white", "black"],
+    "stock": true,
+    "id": "19"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro32.jpg",
+    "img2": "/img/product/pro33.jpg",
+    "images": [
+      { "src": "/img/product/pro33.jpg" },
+      { "src": "/img/product/pro32.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing", "tshart"],
+    "tags": ["gent", "clothing", "tshart"],
+    "brand": "everlane",
+    "colors": ["gray", "black"],
+    "stock": true,
+    "id": "20",
+    "size": "XL"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro31.jpg",
+    "img2": "/img/product/pro33.jpg",
+    "images": [
+      { "src": "/img/product/pro33.jpg" },
+      { "src": "/img/product/pro31.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing", "tshart"],
+    "tags": ["gent", "clothing", "tshart"],
+    "brand": "everlane",
+    "colors": ["white", "black"],
+    "stock": true,
+    "size": "M",
+    "id": "21"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro16.jpg",
+    "img2": "/img/product/pro17.jpg",
+    "images": [
+      { "src": "/img/product/pro16.jpg" },
+      { "src": "/img/product/pro17.jpg" },
+      { "src": "/img/product/pro18.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing", "jacket"],
+    "tags": ["ladies", "clothing", "jacket"],
+    "brand": "gucci",
+    "size": "X",
+    "colors": ["white", "black"],
+    "stock": true,
+    "id": "16"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro18.jpg",
+    "img2": "/img/product/pro19.jpg",
+    "images": [
+      { "src": "/img/product/pro18.jpg" },
+      { "src": "/img/product/pro19.jpg" },
+      { "src": "/img/product/pro16.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing", "jacket"],
+    "tags": ["ladies", "clothing", "jacket"],
+    "brand": "dior",
+    "size": "XXL",
+    "colors": ["gray", "black"],
+    "stock": false,
+    "id": "17"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro20.jpg",
+    "img2": "/img/product/pro19.jpg",
+    "images": [
+      { "src": "/img/product/pro20.jpg" },
+      { "src": "/img/product/pro19.jpg" },
+      { "src": "/img/product/pro16.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing", "jacket"],
+    "tags": ["ladies", "clothing", "jacket"],
+    "colors": ["rad", "gray"],
+    "brand": "chanel",
+    "size": "XL",
+    "stock": true,
+    "id": "18"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro8.jpg",
+    "img2": "/img/product/pro1.jpg",
+    "images": [
+      { "src": "/img/product/pro8.jpg" },
+      { "src": "/img/product/pro1.jpg" },
+      { "src": "/img/product/pro2.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["furniture"],
+    "tags": ["furniture"],
+    "brand": "ikea",
+    "stock": true,
+    "id": "4",
+    "sale": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro2.jpg",
+    "img2": "/img/product/pro4.jpg",
+    "images": [
+      { "src": "/img/product/pro2.jpg" },
+      { "src": "/img/product/pro4.jpg" },
+      { "src": "/img/product/pro8.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "lamp"],
+    "tags": ["furniture", "lamp"],
+    "brand": "steelcase",
+    "stock": false,
+    "id": "5"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro4.jpg",
+    "img2": "/img/product/pro8.jpg",
+    "images": [
+      { "src": "/img/product/pro4.jpg" },
+      { "src": "/img/product/pro8.jpg" },
+      { "src": "/img/product/pro1.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "chair"],
+    "tags": ["furniture", "chair"],
+    "brand": "stickley",
+    "stock": true,
+    "id": "6"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro7.jpg",
+    "img2": "/img/product/pro4.jpg",
+    "images": [
+      { "src": "/img/product/pro7.jpg" },
+      { "src": "/img/product/pro4.jpg" },
+      { "src": "/img/product/pro1.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "chair"],
+    "tags": ["furniture", "chair"],
+    "brand": "stickley",
+    "stock": true,
+    "id": "7",
+    "new": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro6.jpg",
+    "img2": "/img/product/pro4.jpg",
+    "images": [
+      { "src": "/img/product/pro6.jpg" },
+      { "src": "/img/product/pro4.jpg" },
+      { "src": "/img/product/pro1.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "chair"],
+    "tags": ["furniture", "chair"],
+    "brand": "steelcase",
+    "stock": true,
+    "id": "8"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro9.jpg",
+    "img2": "/img/product/pro4.jpg",
+    "images": [
+      { "src": "/img/product/pro9.jpg" },
+      { "src": "/img/product/pro4.jpg" },
+      { "src": "/img/product/pro1.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "chair"],
+    "tags": ["furniture", "chair"],
+    "brand": "steelcase",
+    "stock": true,
+    "id": "9"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro10.jpg",
+    "img2": "/img/product/pro4.jpg",
+    "images": [
+      { "src": "/img/product/pro4.jpg" },
+      { "src": "/img/product/pro8.jpg" },
+      { "src": "/img/product/pro10.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "colors": [],
+    "category": ["furniture", "chair"],
+    "tags": ["furniture", "chair"],
+    "brand": "stickley",
+    "stock": true,
+    "id": "10",
+    "new": true,
+    "sale": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro13.jpg",
+    "img2": "/img/product/pro14.jpg",
+    "images": [
+      { "src": "/img/product/pro13.jpg" },
+      { "src": "/img/product/pro14.jpg" },
+      { "src": "/img/product/pro15.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing"],
+    "tags": ["ladies", "clothing"],
+    "colors": ["gray", "black"],
+    "brand": "gucci",
+    "size": "L",
+    "stock": true,
+    "id": "11",
+    "new": true,
+    "sale": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro15.jpg",
+    "img2": "/img/product/pro16.jpg",
+    "images": [
+      { "src": "/img/product/pro15.jpg" },
+      { "src": "/img/product/pro16.jpg" },
+      { "src": "/img/product/pro13.jpg" }
+    ],
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing"],
+    "tags": ["ladies", "clothing"],
+    "colors": ["gray", "black"],
+    "brand": "dior",
+    "stock": false,
+    "size": "M",
+    "id": "12",
+    "sale": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro17.jpg",
+    "img2": "/img/product/pro18.jpg",
+    "images": [
+      { "src": "/img/product/pro17.jpg" },
+      { "src": "/img/product/pro18.jpg" },
+      { "src": "/img/product/pro13.jpg" }
+    ],
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing"],
+    "tags": ["ladies", "clothing"],
+    "colors": ["red", "black"],
+    "brand": "chanel",
+    "stock": true,
+    "size": "XL",
+    "id": "13",
+    "new": true
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro19.jpg",
+    "img2": "/img/product/pro20.jpg",
+    "images": [
+      { "src": "/img/product/pro19.jpg" },
+      { "src": "/img/product/pro20.jpg" },
+      { "src": "/img/product/pro13.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing"],
+    "tags": ["ladies", "clothing"],
+    "colors": ["gray", "black"],
+    "size": "XL",
+    "brand": "gucci",
+    "stock": true,
+    "id": "14"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro14.jpg",
+    "img2": "/img/product/pro14.jpg",
+    "images": [
+      { "src": "/img/product/pro14.jpg" },
+      { "src": "/img/product/pro16.jpg" },
+      { "src": "/img/product/pro13.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing"],
+    "tags": ["ladies", "clothing"],
+    "colors": ["black"],
+    "brand": "gucci",
+    "size": "XXL",
+    "stock": false,
+    "id": "15"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro27.jpg",
+    "img2": "/img/product/pro28.jpg",
+    "images": [
+      { "src": "/img/product/pro27.jpg" },
+      { "src": "/img/product/pro28.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing"],
+    "tags": ["gent", "clothing"],
+    "colors": ["green", "blue"],
+    "size": "L",
+    "brand": "gent",
+    "stock": true,
+    "id": "190"
+  },
+  {
+    "name": "Lodge Flush Mount Style",
+    "img1": "/img/product/pro28.jpg",
+    "img2": "/img/product/pro29.jpg",
+    "images": [
+      { "src": "/img/product/pro28.jpg" },
+      { "src": "/img/product/pro29.jpg" },
+      { "src": "/img/product/pro27.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing"],
+    "tags": ["gent", "clothing"],
+    "colors": ["green", "white"],
+    "size": "M",
+    "brand": "asos",
+    "stock": true,
+    "id": "22"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro31.jpg",
+    "img2": "/img/product/pro32.jpg",
+    "images": [
+      { "src": "/img/product/pro32.jpg" },
+      { "src": "/img/product/pro28.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing"],
+    "tags": ["gent", "clothing"],
+    "colors": ["white", "gray"],
+    "brand": "asos",
+    "size": "XL",
+    "stock": true,
+    "id": "23"
+  },
+  {
+    "name": "Lodge Flush Mount Cloth",
+    "img1": "/img/product/pro33.jpg",
+    "img2": "/img/product/pro34.jpg",
+    "images": [
+      { "src": "/img/product/pro33.jpg" },
+      { "src": "/img/product/pro34.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing"],
+    "tags": ["gent", "clothing"],
+    "colors": ["white", "black"],
+    "brand": "nike",
+    "size": "XXL",
+    "stock": true,
+    "id": "24"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro27.jpg",
+    "img2": "/img/product/pro28.jpg",
+    "images": [
+      { "src": "/img/product/pro27.jpg" },
+      { "src": "/img/product/pro28.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing"],
+    "tags": ["gent", "clothing"],
+    "colors": ["green", "blue"],
+    "brand": "asos",
+    "stock": true,
+    "size": "L",
+    "id": "25"
+  },
+  {
+    "name": "Raglan Baseball Style shirt",
+    "img1": "/img/product/pro29.jpg",
+    "img2": "/img/product/pro30.jpg",
+    "images": [
+      { "src": "/img/product/pro29.jpg" },
+      { "src": "/img/product/pro30.jpg" },
+      { "src": "/img/product/pro33.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "290",
+    "discount": "20",
+    "category": ["gent", "clothing", "jacket"],
+    "tags": ["gent", "clothing", "jacket"],
+    "size": "L",
+    "brand": "nike",
+    "colors": ["white", "black"],
+    "stock": true,
+    "id": "190"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro32.jpg",
+    "img2": "/img/product/pro33.jpg",
+    "images": [
+      { "src": "/img/product/pro33.jpg" },
+      { "src": "/img/product/pro32.jpg" },
+      { "src": "/img/product/pro29.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["gent", "clothing", "tshart"],
+    "tags": ["gent", "clothing", "tshart"],
+    "brand": "everlane",
+    "colors": ["gray", "black"],
+    "stock": true,
+    "id": "200",
+    "size": "XL"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro18.jpg",
+    "img2": "/img/product/pro19.jpg",
+    "images": [
+      { "src": "/img/product/pro18.jpg" },
+      { "src": "/img/product/pro19.jpg" },
+      { "src": "/img/product/pro16.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing", "jacket"],
+    "tags": ["ladies", "clothing", "jacket"],
+    "brand": "dior",
+    "size": "XXL",
+    "colors": ["gray", "black"],
+    "stock": false,
+    "id": "170"
+  },
+  {
+    "name": "Minimal Troma Furniture",
+    "img1": "/img/product/pro20.jpg",
+    "img2": "/img/product/pro19.jpg",
+    "images": [
+      { "src": "/img/product/pro20.jpg" },
+      { "src": "/img/product/pro19.jpg" },
+      { "src": "/img/product/pro16.jpg" }
+    ],
+    "price": "230",
+    "mainPrice": "190",
+    "discount": "20",
+    "category": ["ladies", "clothing", "jacket"],
+    "tags": ["ladies", "clothing", "jacket"],
+    "colors": ["rad", "gray"],
+    "brand": "chanel",
+    "size": "XL",
+    "stock": true,
+    "id": "180"
+  }
+]

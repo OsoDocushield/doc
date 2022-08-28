@@ -7,15 +7,16 @@ import MobileHeader from "./header/MobileHeader";
 import SearchTrigger from "./header/SearchTrigger";
 import ShopCart from "./header/ShopCart.js";
 
-const Header = ({
+function Header({
   sticky,
   container,
   transparent,
   whiteMenu,
   extraTransparentClass,
-}) => {
+}) {
   useEffect(() => {
     sticky && window.addEventListener("scroll", scroll);
+
   }, []);
   return (
     <header

@@ -3,51 +3,23 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Nav, Tab, TabContainer } from "react-bootstrap";
 import { toast } from "react-hot-toast";
-import { connect } from "react-redux";
 import Layout from "../../layouts/Layout";
 import PageTitle from "../../layouts/PageTitle";
-import { getProducts, getSingleProduct } from "../../redux/action/product";
-import {
-  addToCart,
-  addWishlist,
-  decreaseCart,
-  getCarts,
-  getWishlist,
-} from "../../redux/action/utilis";
 import { simpleProductFilter } from "../../utils/filterProduct";
 import RelatedProduct from "../slider/RelatedProduct";
 import Product from "./Product";
 
-const Details = ({
-  addToCart,
-  decreaseCart,
-  getSingleProduct,
-  getCarts,
-  addWishlist,
-  getWishlist,
-  product,
-  products,
-  carts,
-  wishlists,
-  getProducts,
-  upcoming,
-  upthumb,
-}) => {
+const Details = () => {
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    getSingleProduct(id);
-    getCarts();
-    getWishlist();
-    getProducts();
   }, [id]);
-  const cart = product && carts && carts.find((cart) => cart.id === product.id);
-  const wishlist =
-    product &&
-    wishlists &&
-    wishlists.find((wishlist) => wishlist.id === product.id);
+  const cart = [];
+  const product = false;
+  const upcoming = false;
+  const wishlist = []
   const size = ["L", "M", "X", "XL", "XXL"];
-
+  const upthumb = false
   const [addCart, setaddCart] = useState(false);
   const [addWishlist_, setAddWishlist_] = useState(false);
 
@@ -75,7 +47,7 @@ const Details = ({
   };
 
   return (
-    <Layout sticky container footerBg textCenter>
+    <Layout>
       <main>
         <PageTitle active="SHOP DETAILS" pageHeading="Our Shop" />
         <section className="shop-details-area pt-100 pb-100">
@@ -214,7 +186,7 @@ const Details = ({
                                 key={size}
                                 className={
                                   size.toLowerCase() ===
-                                  product.size.toLowerCase()
+                                    product.size.toLowerCase()
                                     ? "active"
                                     : ""
                                 }
@@ -282,9 +254,8 @@ const Details = ({
                           </div>
                         </div>
                         <button
-                          className={`${
-                            wishlist ? "active" : ""
-                          } details-action-icon`}
+                          className={`${wishlist ? "active" : ""
+                            } details-action-icon`}
                           type="submit"
                           onClick={(e) => onClickWishlist(e)}
                         >
@@ -487,30 +458,15 @@ const Details = ({
             </div>
           </div>
         </section>
-        <RelatedProduct>
+        {/* <RelatedProduct>
           {products &&
             simpleProductFilter(product && product.category[0], products).map(
               (product) => <Product key={product.id} product={product} />
             )}
-        </RelatedProduct>
+        </RelatedProduct> */}
       </main>
     </Layout>
   );
 };
 
-const mapStateToProps = (state) => ({
-  products: state.product.products,
-  product: state.product.singleProduct,
-  carts: state.utilis.carts,
-  wishlists: state.utilis.wishlist,
-});
-
-export default connect(mapStateToProps, {
-  addToCart,
-  decreaseCart,
-  getCarts,
-  getSingleProduct,
-  addWishlist,
-  getWishlist,
-  getProducts,
-})(Details);
+export default Details;

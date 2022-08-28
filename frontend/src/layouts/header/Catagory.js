@@ -1,21 +1,26 @@
 // import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { API_URL } from "../../../utils/utils";
 // import logoWhite from "/img/logo/logo-white.png";
 // import logo from "/img/logo/logo.png";
-
+const getData = async () => {
+  return
+}
 const Catagory = ({ whiteMenu }) => {
   const [catMenu, setCatMenu] = useState(false);
-  let category = [
-    "furniture",
-    "ladies",
-    "gent",
-    "Clothing",
-    "jacket",
-    "tshart",
-    "lamp",
-    "chair",
-  ];
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let data = await fetch(`${API_URL}/api/categories`)
+      data = await data.json()
+      setCategory(data?.data.map(each => ({ name: each.attributes.name, id: each.id })))
+    }
+    fetchData()
+  }, [])
+
+
   return (
     <Fragment>
       <div className="d-flex">
@@ -46,10 +51,10 @@ const Catagory = ({ whiteMenu }) => {
         <ul>
           {category &&
             category.map((category) => (
-              <li key={category}>
-                <Link href="/shop">
+              <li key={category.id}>
+                <Link href={`/shop/?id=${category.id}`}>
                   <a className="text-capitalize">
-                    <i className="flaticon-shopping-cart-1" /> {category}
+                    <i className="flaticon-shopping-cart-1" /> {category.name}
                   </a>
                 </Link>
               </li>

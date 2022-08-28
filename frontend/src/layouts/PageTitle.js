@@ -49,3 +49,15 @@ const PageTitle = ({ pageHeading, active, thankupage, id }) => {
 };
 
 export default PageTitle;
+export async function getStaticProps() {
+  console.log("sssssssssz")
+
+  let categoryData = await fetch(`${API_URL}/api/categories`)
+  categoryData = await categoryData.json()
+  console.log({ categoryData })
+  return {
+    props: {
+      category: categoryData?.data.map(each => each?.attributes?.name)
+    }
+  }
+}

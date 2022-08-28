@@ -1,54 +1,23 @@
-import { Fragment, useEffect } from "react";
-import { connect } from "react-redux";
-import { getCompare, getWishlist } from "../redux/action/utilis";
-import CompareIcon from "./CompareIcon";
+import { Fragment } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import Header2 from "./Header2";
-import WishListIcon from "./WishListIcon";
+import { useRouter } from 'next/router'
 
 const Layout = ({
-  children,
-  sticky,
-  container,
-  footerBg,
-  transparent,
-  extraTransparentClass,
-  header2,
-  textCenter,
-  whiteMenu,
-  getWishlist,
-  getCompare,
+  children
 }) => {
-  useEffect(() => {
-    getWishlist();
-    getCompare();
-  }, []);
+  const router = useRouter();
   return (
     <Fragment>
-      {header2 ? (
-        <Header2 whiteMenu={whiteMenu} />
-      ) : (
-        <Header
-          sticky={sticky}
-          container={container}
-          transparent={transparent}
-          extraTransparentClass={extraTransparentClass}
-          whiteMenu={whiteMenu}
-        />
-      )}
-      <WishListIcon />
-      <CompareIcon />
-
-      {children}
-      <Footer
-        container={container}
-        footerBg={footerBg}
-        textCenter={textCenter}
+      <Header
+        transparent={router.route === '/' ? true : false}
+        whiteMenu={router.route === '/' ? true : false}
+        extraTransparentClass={"transparent-header-2"}
       />
-      {/* <ScrollTop /> */}
+      {children}
+      <Footer />
     </Fragment>
   );
 };
 
-export default connect(null, { getWishlist, getCompare })(Layout);
+export default Layout;

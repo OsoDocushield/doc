@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { connect, useSelector } from "react-redux";
+import { fromImageToUrl } from "../../../utils/utils";
 import {
   addToCart,
   addWishlist,
@@ -18,14 +18,14 @@ const Product = ({
   compare,
   removeCompare,
 }) => {
-  const wishlist = useSelector((state) => state.utilis.wishlist);
-  const compares = useSelector((state) => state.utilis.compares);
+  const wishlist = [];
+  const compares = [];
 
   const [quickView, setQuickView] = useState(false);
   const [addCompare, setAddCompare] = useState(false);
   const [addCart, setaddCart] = useState(false);
   const [addWishlist_, setAddWishlist_] = useState(false);
-
+  console.log({ product })
   const onClickCompare = (e) => {
     e.preventDefault();
     setAddCompare(true);
@@ -68,17 +68,17 @@ const Product = ({
 
   return (
     <div className={`product-wrapper mb-50 ${wrapperPadding0 ? "p-0" : ""}`}>
-      <ProductModal
+      {/* <ProductModal
         show={quickView}
         handleClose={() => setQuickView(false)}
         product={product}
-      />
+      /> */}
 
       <div className="product-img mb-25">
-        <Link href={`/shop/${product.id}`}>
+        <Link href={`/product/${product.id}`}>
           <a>
-            <img src={product.img1} alt="img 1" />
-            <img className="secondary-img" src={product.img2} alt="imge 2" />
+            <img src={fromImageToUrl(product.images[0])} alt="img 1" />
+            <img className="secondary-img" src={fromImageToUrl(product.images[1])} alt="imge 2" />
           </a>
         </Link>
 
@@ -96,27 +96,13 @@ const Product = ({
           >
             <i className="flaticon-eye" />
           </a>
-          <a
-            href="#"
-            onClick={(e) => onClickCompare(e)}
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Compare"
-            className={
-              compares.find((compare) => compare.id === product.id)
-                ? "active"
-                : ""
-            }
-          >
-            <i className="flaticon-compare" />
-          </a>
         </div>
         <div className="sale-tag">
           {product.new && <span className="new">new</span>}
           {product.sale && <span className="sale">sale</span>}
         </div>
       </div>
-      <div className="product-content">
+      {/* <div className="product-content">
         <div className="pro-cat mb-10">
           <Link href={`/shop/${product.id}`}>decor, </Link>
           <Link href={`/shop/${product.id}`}>{product.brand}</Link>
@@ -138,24 +124,17 @@ const Product = ({
           <a
             href="#"
             onClick={(e) => onClickWishlist(e)}
-            className={` ${
-              wishlist && wishlist.find((pro) => pro.id === product.id)
-                ? "active"
-                : ""
-            } `}
+            className={` ${wishlist && wishlist.find((pro) => pro.id === product.id)
+              ? "active"
+              : ""
+              } `}
           >
             <i className="far fa-heart" title="Wishlist" />
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default connect(null, {
-  addToCart,
-  addWishlist,
-  getWishlist,
-  compare,
-  removeCompare,
-})(Product);
+export default Product;

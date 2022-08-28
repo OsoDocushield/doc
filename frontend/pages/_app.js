@@ -32,13 +32,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {preloader ? <PreLoader /> : <ScrollTop />}
       <AllToaster />
-      <Header
-        transparent
-        whiteMenu
-        extraTransparentClass={"transparent-header-2"}
-      />
       <Component {...pageProps} />
-      <Footer />
     </>
   );
 }

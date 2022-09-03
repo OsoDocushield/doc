@@ -1,42 +1,54 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { connect, useSelector } from "react-redux";
+import { fromImageToUrl } from "../../../utils/utils";
+import { CartContext } from "../../context/CartConntext";
 import { getCarts, removeCart } from "../../redux/action/utilis";
 import { totalPrice } from "../../utils/utils";
-const ShopCart = ({ removeCart, getCarts }) => {
-  // useEffect(() => {
-  //   getCarts();
-  // }, []);
-  const carts = [];
+const ShopCart = () => {
+  const { cart, remove } = useContext(CartContext);
+  const [products, setProducts] = useState([])
+  const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+    if (Object.keys(cart)) {
+      let _total = 0
+      setProducts(Object.keys(cart).map(e => {
+        _total = _total + Number(cart[e].price) * Number(cart[e].quantity)
+        return cart[e]
+      }))
+      setTotal(_total)
+    }
+  }, [cart]);
 
   return (
     <li className="d-shop-cart">
       <a href="#" onClick={(e) => e.preventDefault()}>
         <i className="flaticon-shopping-cart" />{" "}
-        <span className="cart-count">{carts && carts.length}</span>
+        <span className="cart-count">{cart && Object.entries(cart).length}</span>
       </a>
       <ul className="minicart">
-        {carts && carts.length > 0 ? (
-          carts.map((cart) => (
-            <li key={cart.id}>
+        {products && products.length > 0 ? (
+          products.map((eachProduct) => (
+            <li key={eachProduct.id}>
               <div className="cart-img">
                 <Link href={`/shop/${cart.id}`}>
                   <a>
-                    <img src={cart.img1} alt="Cart" />
+                    <img src={fromImageToUrl(eachProduct.images[0])} alt="Cart" />
                   </a>
                 </Link>
               </div>
               <div className="cart-content">
                 <h3>
-                  <Link href={`/shop/${cart.id}`}>{cart.name}</Link>
+                  <Link href={`/shop/${eachProduct.id}`}>{eachProduct.name}</Link>
                 </h3>
                 <div className="cart-price">
                   <span className="new">
-                    ${cart.mainPrice} * {cart.qty}
+                    ${eachProduct.price} * {eachProduct.quantity}
                   </span>
                   {" ="}
-                  <span className="new ml-1 ">${cart.totalPrice}</span>
+                  <span className="new ml-1 ">${Number(eachProduct.price) * Number(eachProduct.quantity)}</span>
                 </div>
               </div>
               <div className="del-icon">
@@ -44,8 +56,8 @@ const ShopCart = ({ removeCart, getCarts }) => {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    removeCart(cart.id);
-                    toast.error("Remove item from carts");
+                    remove(eachProduct.id);
+                    toast.success("Item removed from cart");
                   }}
                 >
                   <i className="far fa-trash-alt" />
@@ -59,7 +71,7 @@ const ShopCart = ({ removeCart, getCarts }) => {
         <li>
           <div className="total-price">
             <span className="f-left">Total:</span>
-            {carts && <span className="f-right">${totalPrice(carts)}</span>}
+            {products && <span className="f-right">${total}</span>}
           </div>
         </li>
         <li>

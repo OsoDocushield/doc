@@ -3,13 +3,15 @@ import PageTitle from "../../src/layouts/PageTitle";
 import { Nav, TabContainer, TabContent, TabPane } from "react-bootstrap";
 import Paggination from "../../src/components/Paggination";
 import { activeData, dblock } from "../../src/utils/utils";
-import { useState } from "react";
+import { useContext, useState } from "react";
 // import ProductListView from "../../src/components/product/ProductListView";
 import Product from "../../src/components/product/Product";
 import { API_URL } from "../../utils/utils";
+import { CartContext } from "../../src/context/CartConntext";
 
 const Shop = ({ products, pageInfo }) => {
     const [active, setActive] = useState(0);
+    const { add } = useContext(CartContext);
     let sort = 10;
     return (
         <Layout>
@@ -36,7 +38,7 @@ const Shop = ({ products, pageInfo }) => {
                                                     id="myTab"
                                                     role="tablist"
                                                 >
-                                                    <Nav.Item as="li">
+                                                    {/* <Nav.Item as="li">
                                                         <Nav.Link
                                                             as="a"
                                                             href="#"
@@ -45,7 +47,7 @@ const Shop = ({ products, pageInfo }) => {
                                                         >
                                                             <i className="fas fa-list-ul" />{" "}
                                                         </Nav.Link>
-                                                    </Nav.Item>
+                                                    </Nav.Item> */}
                                                     <Nav.Item as="li">
                                                         <Nav.Link
                                                             as="a"
@@ -77,7 +79,7 @@ const Shop = ({ products, pageInfo }) => {
                                                             )}`}
                                                             key={product.id}
                                                         >
-                                                            <Product product={product} />
+                                                            <Product product={product} addToCart={add} />
                                                         </div>
                                                     ))}
                                             </div>

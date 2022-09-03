@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { fromImageToUrl } from "../../../utils/utils";
+import { CartContext } from "../../context/CartConntext";
 import {
   addToCart,
   addWishlist,
@@ -20,7 +21,7 @@ const Product = ({
 }) => {
   const wishlist = [];
   const compares = [];
-
+  // const value = useContext(CartContext);
   const [quickView, setQuickView] = useState(false);
   const [addCompare, setAddCompare] = useState(false);
   const [addCart, setaddCart] = useState(false);
@@ -51,8 +52,7 @@ const Product = ({
   const onClickCart = (e) => {
     e.preventDefault();
     addToCart(product);
-    setaddCart(true);
-    toast.success("Add item in Cart.");
+    toast.success("Item Added in Cart.");
   };
   const onClickWishlist = (e) => {
     e.preventDefault();

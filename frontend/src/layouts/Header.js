@@ -4,6 +4,7 @@ import { scroll } from "../utils/utils";
 import Catagory from "./header/Catagory";
 import DasktopHeader1 from "./header/DasktopHeader1";
 import MobileHeader from "./header/MobileHeader";
+import Profile from "./header/Profile";
 import SearchTrigger from "./header/SearchTrigger";
 import ShopCart from "./header/ShopCart.js";
 
@@ -41,14 +42,8 @@ function Header({
             <div className="col-xl-3 col-lg-6 col-md-6 col-5 col-sm-9 pl-0">
               <div className="header-right f-right">
                 <ul>
-                  <SearchTrigger />
-                  <li className="login-btn">
-                    <Link href="/login">
-                      <a>
-                        <i className="far fa-user" />
-                      </a>
-                    </Link>
-                  </li>
+                  {/* <SearchTrigger /> */}
+                  <Profile />
                   <ShopCart />
                 </ul>
               </div>

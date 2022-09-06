@@ -18,6 +18,10 @@ export function CartProvider({ children }) {
         localStorage.setItem('cart', JSON.stringify(cart))
         setCart({ ...cart })
     }
+    function clear() {
+        localStorage.setItem('cart', JSON.stringify({}))
+        setCart({})
+    }
 
     function remove(productID) {
         let _ = cart
@@ -42,7 +46,7 @@ export function CartProvider({ children }) {
     }
 
     return <CartContext.Provider value={{
-        cart, add, remove, increase,
+        cart, add, remove, increase, clear,
         decrease
     }}>
         {loading ? <></> : children}

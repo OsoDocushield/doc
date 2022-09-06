@@ -29,15 +29,6 @@
     "price": {
       "type": "decimal"
     },
-    "color": {
-      "type": "string"
-    },
-    "stock": {
-      "type": "integer"
-    },
-    "mainprice": {
-      "type": "decimal"
-    },
     "category": {
       "type": "relation",
       "relation": "manyToOne",

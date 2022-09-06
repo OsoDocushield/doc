@@ -17,14 +17,17 @@ import {
     couponSchema,
     loginSchema,
 } from "../src/utils/yupModal";
-import { API_URL } from "../utils/utils";
+import { API_URL, PAYPAL_CLIENTID } from "../utils/utils";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 
 const Checkout = ({ setCheckoutData }) => {
 
     const auth = useContext(AuthContext);
-    const { cart } = useContext(CartContext);
+    const { cart, clear } = useContext(CartContext);
     const router = useRouter()
     const [loading, setLoading] = useState(false)
+    const [orderCretaed, setOrderCretaed] = useState(null)
     const [carts, setCarts] = useState([])
     const [total, setTotal] = useState(0)
 
@@ -43,7 +46,7 @@ const Checkout = ({ setCheckoutData }) => {
         })
         setCarts(_products)
         setTotal(_total)
-        setOrderData({ ...orderData, amount: _total })
+        setOrderData({ ...orderData, amount: _total, products: _products })
     }, [cart])
 
 
@@ -96,7 +99,8 @@ const Checkout = ({ setCheckoutData }) => {
         phone: 'gggggggggggggggggggggggg',
         state: 'gggggggggggggggggggg',
         additional_notes: 'gggggggggggggggggggggggg',
-        amount: 0
+        amount: 0,
+        products: [],
     })
     const handleSubmit = async (e) => {
         setLoading(true)
@@ -113,7 +117,9 @@ const Checkout = ({ setCheckoutData }) => {
                 body: JSON.stringify({ data: orderData })
             })
             res = await res.json()
-            console.log({ res })
+            if (res?.id) {
+                setOrderCretaed(res.id)
+            }
         }
 
 
@@ -143,180 +149,218 @@ const Checkout = ({ setCheckoutData }) => {
                             <h3>0 Product added in cart</h3>
                         </div>
                     </div> :
-                    <section className="checkout-area pb-70">
-                        <div className="container">
-                            <form action="#" onSubmit={handleSubmit}>
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        <div className="checkbox-form">
-                                            <h3>Billing Details</h3>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="first_name"
-                                                            id="first_name"
-                                                            label="First Name"
-                                                            values={orderData.first_name}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, first_name: e.target.value }) }}
-                                                        />
+                    <PayPalScriptProvider options={{ "client-id": PAYPAL_CLIENTID }}>
+                        <section className="checkout-area pb-70">
+                            <div className="container">
+                                <form action="#" onSubmit={handleSubmit}>
+                                    <div className="row" style={orderCretaed ? { justifyContent: 'center' } : {}}>
+                                        <div className="col-lg-6" style={orderCretaed ? { display: 'none' } : {}}>
+                                            <div className="checkbox-form">
+                                                <h3>Billing Details</h3>
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="first_name"
+                                                                id="first_name"
+                                                                label="First Name"
+                                                                values={orderData.first_name}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, first_name: e.target.value }) }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="last_name"
+                                                                id="last_name"
+                                                                label="Last Name"
+                                                                values={orderData.last_name}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, last_name: e.target.value }) }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="address"
+                                                                id="address"
+                                                                label="Address"
+                                                                placeholder="Street address"
+                                                                values={orderData.address}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, address: e.target.value }) }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="city"
+                                                                id="city"
+                                                                label="Town / City"
+                                                                placeholder="Town / City"
+                                                                values={orderData.city}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, city: e.target.value }) }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="state"
+                                                                id="state"
+                                                                label="State / County"
+                                                                placeholder="State / County"
+                                                                values={orderData.state}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, state: e.target.value }) }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="zip"
+                                                                id="zip"
+                                                                label="Postcode / Zip"
+                                                                placeholder="Postcode / Zip"
+                                                                values={orderData.zip}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, zip: e.target.value }) }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="checkout-form-list">
+                                                            <InputGroup
+                                                                name="phone"
+                                                                id="phone"
+                                                                label="Phone"
+                                                                values={orderData.phone}
+                                                                handleChange={(e) => { setOrderData({ ...orderData, phone: e.target.value }) }}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="last_name"
-                                                            id="last_name"
-                                                            label="Last Name"
-                                                            values={orderData.last_name}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, last_name: e.target.value }) }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="address"
-                                                            id="address"
-                                                            label="Address"
-                                                            placeholder="Street address"
-                                                            values={orderData.address}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, address: e.target.value }) }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="city"
-                                                            id="city"
-                                                            label="Town / City"
-                                                            placeholder="Town / City"
-                                                            values={orderData.city}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, city: e.target.value }) }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="state"
-                                                            id="state"
-                                                            label="State / County"
-                                                            placeholder="State / County"
-                                                            values={orderData.state}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, state: e.target.value }) }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="zip"
-                                                            id="zip"
-                                                            label="Postcode / Zip"
-                                                            placeholder="Postcode / Zip"
-                                                            values={orderData.zip}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, zip: e.target.value }) }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="checkout-form-list">
-                                                        <InputGroup
-                                                            name="phone"
-                                                            id="phone"
-                                                            label="Phone"
-                                                            values={orderData.phone}
-                                                            handleChange={(e) => { setOrderData({ ...orderData, phone: e.target.value }) }}
-                                                        />
+                                                <div className="different-address">
+                                                    <div className="order-notes">
+                                                        <div className="checkout-form-list">
+                                                            <label>Order Notes</label>
+                                                            <textarea
+                                                                id="checkout-mess"
+                                                                cols={30}
+                                                                rows={10}
+                                                                placeholder="Notes about your order, e.g. special notes for delivery."
+                                                                value={orderData.additional_notes}
+                                                                onChange={(e) => { setOrderData({ ...orderData, additional_notes: e.target.value }) }}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="different-address">
-                                                <div className="order-notes">
-                                                    <div className="checkout-form-list">
-                                                        <label>Order Notes</label>
-                                                        <textarea
-                                                            id="checkout-mess"
-                                                            cols={30}
-                                                            rows={10}
-                                                            placeholder="Notes about your order, e.g. special notes for delivery."
-                                                            value={orderData.additional_notes}
-                                                            onChange={(e) => { setOrderData({ ...orderData, additional_notes: e.target.value }) }}
-                                                        />
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <div className="your-order mb-30 ">
+                                                <h3>Your order</h3>
+                                                <div className="your-order-table table-responsive">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th className="product-name">Product</th>
+                                                                <th className="product-total">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {carts &&
+                                                                carts.map((cart) => (
+                                                                    <tr className="cart_item" key={cart.id}>
+                                                                        <td className="product-name">
+                                                                            {cart.name}{" "}
+                                                                            <strong className="product-quantity">
+                                                                                {" "}
+                                                                                × {cart.quantity}
+                                                                            </strong>
+                                                                        </td>
+                                                                        <td className="product-total">
+                                                                            <span className="amount">
+                                                                                ${Number(cart.price * cart.quantity).toFixed(2)}
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr className="order-total">
+                                                                <th>Order Total</th>
+                                                                <td>
+                                                                    <strong>
+                                                                        {price && (
+                                                                            <span className="amount">
+                                                                                ${Number(total).toFixed(2)}
+                                                                            </span>
+                                                                        )}
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                                <div className="payment-method">
+                                                    <div className="order-button-payment mt-20">
+                                                        {!orderCretaed && <button
+                                                            type="submit"
+                                                            className="btn theme-btn"
+                                                            disabled={loading}
+                                                        >
+                                                            Place order
+                                                        </button>}
+                                                        {orderCretaed &&
+                                                            <PayPalButtons
+                                                                createOrder={(data, actions) => {
+                                                                    return actions.order.create({
+                                                                        purchase_units: [
+                                                                            {
+                                                                                amount: {
+                                                                                    value: Number(total).toFixed(2),
+                                                                                },
+                                                                            },
+                                                                        ]
+                                                                    });
+                                                                }}
+                                                                onApprove={(data, actions) => {
+                                                                    return actions.order.capture().then(({ id }) => {
+                                                                        fetch(`${API_URL}/api/orders/${orderCretaed}`, {
+                                                                            method: 'PUT',
+                                                                            headers: {
+                                                                                'Accept': 'application/json',
+                                                                                'Content-Type': 'application/json',
+                                                                                'Authorization': 'Bearer ' + auth.user.jwt
+                                                                            },
+                                                                            body: JSON.stringify({ transactionID: id })
+                                                                        }).then(e => {
+                                                                            // clear()
+                                                                            router.push(`/order/${orderCretaed}`)
+                                                                        }).catch(e => {
+                                                                            toast.error('Transaction failed. Please try agin...')
+                                                                        })
+                                                                    })
+                                                                }}
+                                                                onError={(error) => {
+                                                                    toast.error('Transaction failed. Please try agin...')
+                                                                }}
+                                                            />
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
-                                        <div className="your-order mb-30 ">
-                                            <h3>Your order</h3>
-                                            <div className="your-order-table table-responsive">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th className="product-name">Product</th>
-                                                            <th className="product-total">Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {carts &&
-                                                            carts.map((cart) => (
-                                                                <tr className="cart_item" key={cart.id}>
-                                                                    <td className="product-name">
-                                                                        {cart.name}{" "}
-                                                                        <strong className="product-quantity">
-                                                                            {" "}
-                                                                            × {cart.quantity}
-                                                                        </strong>
-                                                                    </td>
-                                                                    <td className="product-total">
-                                                                        <span className="amount">
-                                                                            ${Number(cart.price * cart.quantity).toFixed(2)}
-                                                                        </span>
-                                                                    </td>
-                                                                </tr>
-                                                            ))}
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr className="order-total">
-                                                            <th>Order Total</th>
-                                                            <td>
-                                                                <strong>
-                                                                    {price && (
-                                                                        <span className="amount">
-                                                                            ${Number(total).toFixed(2)}
-                                                                        </span>
-                                                                    )}
-                                                                </strong>
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                            <div className="payment-method">
-                                                <div className="order-button-payment mt-20">
-                                                    <button
-                                                        type="submit"
-                                                        className="btn theme-btn"
-                                                        disabled={loading}
-                                                    >
-                                                        Place order
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </section>
+                                </form>
+                            </div>
+                        </section>
+                    </PayPalScriptProvider>
                 }
 
-            </main>
-        </Layout>
+            </main >
+        </Layout >
     );
 };
 

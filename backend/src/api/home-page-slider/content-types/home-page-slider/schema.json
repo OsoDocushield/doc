@@ -4,7 +4,8 @@
   "info": {
     "singularName": "home-page-slider",
     "pluralName": "home-page-sliders",
-    "displayName": "HomePageSlider"
+    "displayName": "HomePageSlider",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,21 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "shop_button": {
+      "type": "string"
+    },
+    "category_button": {
+      "type": "string"
     }
   }
 }

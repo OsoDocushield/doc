@@ -29,17 +29,24 @@
     "price": {
       "type": "decimal"
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "products"
-    },
     "short_description": {
       "type": "text"
     },
     "long_description": {
       "type": "richtext"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "total_reviews": {
+      "type": "integer",
+      "default": 0
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
     }
   }
 }

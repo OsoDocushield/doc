@@ -21,11 +21,29 @@
     "emails": {
       "type": "string"
     },
-    "termsAndCondition": {
-      "type": "richtext"
+    "facebook": {
+      "type": "string"
     },
-    "privacy": {
-      "type": "richtext"
+    "twitter": {
+      "type": "string"
+    },
+    "behance": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "youtube": {
+      "type": "string"
+    },
+    "location": {
+      "type": "text"
+    },
+    "footer_desc": {
+      "type": "text"
+    },
+    "map_location": {
+      "type": "text"
     }
   }
 }

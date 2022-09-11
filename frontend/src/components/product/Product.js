@@ -77,8 +77,8 @@ const Product = ({
       <div className="product-img mb-25">
         <Link href={`/product/${product.id}`}>
           <a>
-            <img src={fromImageToUrl(product.images[0])} alt="img 1" />
-            <img className="secondary-img" src={fromImageToUrl(product.images[1])} alt="imge 2" />
+            {product.images[0] && <img src={fromImageToUrl(product.images[0])} alt="img 1" />}
+            {product.images[1] && <img className="secondary-img" src={fromImageToUrl(product.images[1])} alt="imge 2" />}
           </a>
         </Link>
 

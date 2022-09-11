@@ -11,3 +11,18 @@
 @import "../public/css/style.css";
 @import "../public/css/responsive.css";
 @import "../public/css/custom.css";
+
+#order-rows{
+    cursor: pointer;
+}
+
+.addreview{
+    cursor: pointer;
+}
+.addreview:hover{
+    color: red;
+}
+
+div[aria-hidden="true"] {
+    visibility: hidden;
+}

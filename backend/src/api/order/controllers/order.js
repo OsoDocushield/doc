@@ -66,18 +66,37 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
     },
 
     async findOne(ctx) {
-        // some logic here
-        console.log(ctx.request.params.id)
-        // const response = await strapi.services['api::order.order'].findOne()
-        const entries = await strapi.entityService.findMany('api::order.order', {
+        const order = await strapi.entityService.findMany('api::order.order', {
             filters: { id: ctx.request.params.id, user: ctx.state.user.id },
             sort: { createdAt: 'DESC' },
             populate: { category: true },
         });
+        if (order[0] && order[0].shipped) {
+            const reviews = await strapi.entityService.findMany('api::review.review', {
+                filters: { order: order[0].id },
+                sort: { createdAt: 'DESC' },
+                populate: { product: true },
+            });
+            reviews.map(eachReview => {
+                order[0].products.map(eachProduct => {
+                    if (eachProduct.id === eachReview.product.id) {
+                        eachProduct.review = { ...eachReview }
+                        delete eachProduct.review.product
+                    }
+                })
+            })
+        }
+        return order;
+    },
 
-        // const response = await super.findOne(ctx);
-        console.log(entries)
+    async find(ctx) {
+        const entries = await strapi.entityService.findMany('api::order.order', {
+            filters: { user: ctx.state.user.id },
+            fields: ['paid', 'shipped', 'amount'],
+            sort: { createdAt: 'DESC' }
+        });
 
         return entries;
     }
+
 }));

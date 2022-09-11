@@ -36,12 +36,6 @@
     "amount": {
       "type": "decimal"
     },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "orders"
-    },
     "phone": {
       "type": "string"
     },
@@ -56,6 +50,11 @@
     },
     "products": {
       "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

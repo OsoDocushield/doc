@@ -9,7 +9,6 @@ import { API_URL, fromImageToUrl } from "../../utils/utils";
 import { CartContext } from "../../src/context/CartConntext";
 
 const Details = ({ product }) => {
-    product = product[0]
     const router = useRouter();
     const { add, cart, increase, decrease } = useContext(CartContext);
     const upcoming = false;
@@ -22,7 +21,7 @@ const Details = ({ product }) => {
 
 
     useEffect(() => {
-        setAddedToCart(cart[product.id] !== undefined ? true : false)
+        product && setAddedToCart(cart[product.id] !== undefined ? true : false)
     }, [cart])
 
     const addToCart = (e) => {
@@ -124,11 +123,11 @@ const Details = ({ product }) => {
                                             <span>
                                                 ${Number(product && product.price).toFixed(2)}
                                             </span>
-                                            {product && product.price && (
+                                            {/* {product && product.price && (
                                                 <span className="old-price">
                                                     ${Number(product.mainprice).toFixed(2)}
                                                 </span>
-                                            )}
+                                            )} */}
                                         </div>
                                         <div className="product-variant">
                                             {product && product.colors && product.colors.length > 0 && (
@@ -267,7 +266,7 @@ const Details = ({ product }) => {
                                                         onClick={(e) => e.preventDefault()}
                                                         eventKey="review"
                                                     >
-                                                        Reviews (2)
+                                                        Reviews ({product.reviews?.length || 0})
                                                     </Nav.Link>
                                                 </Nav.Item>
                                             </Nav>
@@ -283,115 +282,36 @@ const Details = ({ product }) => {
                                                     </div>
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="review">
-                                                    <div className="desc-text review-text">
-                                                        <div className="product-commnets">
-                                                            <div className="product-commnets-list mb-25 pb-15">
-                                                                <div className="pro-comments-img">
-                                                                    <img
-                                                                        src="/img/product/comments/01.png"
-                                                                        alt="img"
-                                                                    />
-                                                                </div>
-                                                                <div className="pro-commnets-text">
-                                                                    <h4>
-                                                                        Roger West -<span>June 5, 2018</span>
-                                                                    </h4>
-                                                                    <div className="pro-rating">
-                                                                        <i className="far fa-star" />
-                                                                        <i className="far fa-star" />
-                                                                        <i className="far fa-star" />
-                                                                        <i className="far fa-star" />
+                                                    {product.reviews && (
+                                                        product.reviews.map(eachReview => (
+                                                            <div className="desc-text review-text">
+                                                                <div className="product-commnets">
+                                                                    <div className="product-commnets-list mb-25 pb-15">
+                                                                        <div className="pro-comments-img">
+                                                                            <img
+                                                                                src="/img/product/comments/01.png"
+                                                                                alt="img"
+                                                                            />
+                                                                        </div>
+                                                                        <div className="pro-commnets-text">
+                                                                            <h4>
+                                                                                {eachReview.user} -
+                                                                                <span>
+                                                                                    {new Date(eachReview.createdAt).toLocaleDateString()}
+                                                                                </span>
+                                                                            </h4>
+                                                                            <div className="pro-rating">
+                                                                                {new Array(eachReview.rating).fill(2).map(e => <i className="far fa-star" />)}
+                                                                            </div>
+                                                                            <p>
+                                                                                {eachReview.comment}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
-                                                                    <p>
-                                                                        Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit, sed do eiusmod tempor
-                                                                        incididunt ut labore et dolore magna aliqua.
-                                                                        Ut enim ad minim veniam, quis nostrud
-                                                                        exercitation.
-                                                                    </p>
                                                                 </div>
                                                             </div>
-                                                            <div className="product-commnets-list mb-25 pb-15">
-                                                                <div className="pro-comments-img">
-                                                                    <img
-                                                                        src="/img/product/comments/02.png"
-                                                                        alt="img"
-                                                                    />
-                                                                </div>
-                                                                <div className="pro-commnets-text">
-                                                                    <h4>
-                                                                        Roger West -<span>June 5, 2018</span>
-                                                                    </h4>
-                                                                    <div className="pro-rating">
-                                                                        <i className="far fa-star" />
-                                                                        <i className="far fa-star" />
-                                                                        <i className="far fa-star" />
-                                                                        <i className="far fa-star" />
-                                                                    </div>
-                                                                    <p>
-                                                                        Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit, sed do eiusmod tempor
-                                                                        incididunt ut labore et dolore magna aliqua.
-                                                                        Ut enim ad minim veniam, quis nostrud
-                                                                        exercitation.
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="review-box mt-50">
-                                                            <h4>Add a Review</h4>
-                                                            <div className="your-rating mb-40">
-                                                                <span>Your Rating:</span>
-                                                                <div className="rating-list">
-                                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                                        <i className="far fa-star" />
-                                                                    </a>
-                                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                                        <i className="far fa-star" />
-                                                                    </a>
-                                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                                        <i className="far fa-star" />
-                                                                    </a>
-                                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                                        <i className="far fa-star" />
-                                                                    </a>
-                                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                                        <i className="far fa-star" />
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <form
-                                                                className="review-form"
-                                                                onSubmit={(e) => e.preventDefault()}
-                                                            >
-                                                                <div className="row">
-                                                                    <div className="col-xl-12">
-                                                                        <label htmlFor="message">YOUR REVIEW</label>
-                                                                        <textarea
-                                                                            name="message"
-                                                                            id="message"
-                                                                            cols={30}
-                                                                            rows={10}
-                                                                            defaultValue={""}
-                                                                        />
-                                                                    </div>
-                                                                    <div className="col-xl-6">
-                                                                        <label htmlFor="r-name">Name</label>
-                                                                        <input type="text" id="r-name" />
-                                                                    </div>
-                                                                    <div className="col-xl-6">
-                                                                        <label htmlFor="r-email">Email</label>
-                                                                        <input type="email" id="r-email" />
-                                                                    </div>
-                                                                    <div className="col-xl-12">
-                                                                        <button className="btn theme-btn">
-                                                                            Add your Review
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                        ))
+                                                    )}
                                                 </Tab.Pane>
                                             </Tab.Content>
                                         </TabContainer>
@@ -422,19 +342,22 @@ const Details = ({ product }) => {
 export default Details;
 
 export async function getServerSideProps(context) {
-    let url = `${API_URL}/api/products?populate=*`
-    if (context?.query?.id) url += `&filters[id][$eq]=${context.query.id}`
+    let url = `${API_URL}/api/products/${context.query.id}?populate=*`
 
     const data = await fetch(url)
     let productData = await data.json()
+    let product = null
+    if (productData.data?.id) {
+        product = {
+            id: productData.data.id,
+            ...productData.data.attributes,
+            images: productData.data.attributes.images.data.map(img => img.attributes.url),
+            category: productData.data.attributes.category.data.attributes.name
+        }
+    }
     return {
         props: {
-            product: productData.data.map(each => ({
-                id: each.id,
-                ...each.attributes,
-                images: each.attributes.images.data.map(img => img.attributes.url),
-                category: each.attributes.category.data.attributes.name
-            }))
+            product
         }
     }
 }

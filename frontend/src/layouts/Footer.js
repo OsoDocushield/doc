@@ -1,15 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import Banner from "../../public/img/banner/add.jpg";
 import Time from "../../public/img/icon/time.png";
 import Logo from "../../public/img/logo/footer-logo.png";
+import { ContactContext } from "../context/ContactContext";
 const Footer = ({ container, footerBg, textCenter }) => {
+  const { contactInfo } = useContext(ContactContext);
   return (
     <footer>
       <div
         className={`${!container
-            ? "footer-area box-90 pt-100 pb-60"
-            : "footer-area pl-100 pr-100 mt-100"
+          ? "footer-area box-90 pt-100 pb-60"
+          : "footer-area pl-100 pr-100 mt-100"
           }`}
       >
         <div
@@ -31,10 +34,7 @@ const Footer = ({ container, footerBg, textCenter }) => {
                     </Link>
                   </div>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore mag na
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    {contactInfo.footer_desc}
                   </p>
                   <div className="footer-time d-flex mt-30">
                     <div className="time-icon">
@@ -42,7 +42,9 @@ const Footer = ({ container, footerBg, textCenter }) => {
                     </div>
                     <div className="time-text">
                       <span>Got Questions ? Call us 24/7!</span>
-                      <h2>(0600) 874 548</h2>
+                      <h2>
+                        {contactInfo.phone.split(':::')[0]}
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -51,37 +53,31 @@ const Footer = ({ container, footerBg, textCenter }) => {
                 <div className="footer-widget pl-50 mb-40">
                   <h3>Social Media</h3>
                   <ul className="footer-link">
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                    {contactInfo.facebook && <li>
+                      <a href={contactInfo.facebook} target="_blank">
                         Facebook
                       </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                    </li>}
+                    {contactInfo.twitter && <li>
+                      <a href={contactInfo.twitter} target="_blank">
                         Twitter
                       </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                    </li>}
+                    {contactInfo.behance && <li>
+                      <a href={contactInfo.behance} target="_blank">
                         Behance
                       </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        {" "}
-                        Dribbble
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                    </li>}
+                    {contactInfo.linkedin && <li>
+                      <a href={contactInfo.linkedin} target="_blank">
                         Linkedin
                       </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                    </li>}
+                    {contactInfo.youtube && <li>
+                      <a href={contactInfo.youtube} target="_blank">
                         Youtube
                       </a>
-                    </li>
+                    </li>}
                   </ul>
                 </div>
               </div>
@@ -89,37 +85,13 @@ const Footer = ({ container, footerBg, textCenter }) => {
                 <div className="footer-widget pl-30 mb-40">
                   <h3>Location</h3>
                   <ul className="footer-link">
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        New York
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        Tokyo
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        Dhaka
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        {" "}
-                        Chittagong
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        China
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
-                        Japan
-                      </a>
-                    </li>
+                    {contactInfo.location.split(':::').map(each =>
+                      <li key={each}>
+                        <a href="#" onClick={(e) => e.preventDefault()} >
+                          {each}
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -127,7 +99,7 @@ const Footer = ({ container, footerBg, textCenter }) => {
                 <div className="footer-widget mb-40">
                   <h3>About</h3>
                   <ul className="footer-link">
-                    <li>
+                    {/* <li>
                       <a href="#" onClick={(e) => e.preventDefault()}>
                         Terms &amp; Conditions
                       </a>
@@ -137,13 +109,13 @@ const Footer = ({ container, footerBg, textCenter }) => {
                         {" "}
                         Privacy Policy
                       </a>
-                    </li>
+                    </li> */}
                     <li>
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                      <a href="/contact" >
                         Contact Us
                       </a>
                     </li>
-                    <li>
+                    {/* <li>
                       <a href="#" onClick={(e) => e.preventDefault()}>
                         FAQ
                       </a>
@@ -157,7 +129,7 @@ const Footer = ({ container, footerBg, textCenter }) => {
                       <a href="#" onClick={(e) => e.preventDefault()}>
                         Direction
                       </a>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -197,21 +169,11 @@ const Footer = ({ container, footerBg, textCenter }) => {
               {!textCenter && (
                 <div className="col-xl-6 col-lg-6 col-md-6">
                   <div className="footer-icon text-center text-md-right ">
-                    <a href="#" onClick={(e) => e.preventDefault()}>
-                      <i className="fab fa-facebook-f" />
-                    </a>
-                    <a href="#" onClick={(e) => e.preventDefault()}>
-                      <i className="fab fa-twitter" />
-                    </a>
-                    <a href="#" onClick={(e) => e.preventDefault()}>
-                      <i className="fab fa-behance" />
-                    </a>
-                    <a href="#" onClick={(e) => e.preventDefault()}>
-                      <i className="fab fa-linkedin-in" />
-                    </a>
-                    <a href="#" onClick={(e) => e.preventDefault()}>
-                      <i className="fab fa-youtube" />
-                    </a>
+                    {contactInfo.facebook && <a href={contactInfo.facebook} target="_blank"> <i className="fab fa-facebook-f" /> </a>}
+                    {contactInfo.twitter && <a href={contactInfo.twitter} target="_blank"> <i className="fab fa-twitter" /> </a>}
+                    {contactInfo.behance && <a href={contactInfo.behance} target="_blank"> <i className="fab fa-behance" /> </a>}
+                    {contactInfo.linkedin && <a href={contactInfo.linkedin} target="_blank"> <i className="fab fa-linkedin-in" /> </a>}
+                    {contactInfo.youtube && <a href={contactInfo.youtube} target="_blank"> <i className="fab fa-youtube" /> </a>}
                   </div>
                 </div>
               )}

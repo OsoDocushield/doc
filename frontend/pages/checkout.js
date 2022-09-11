@@ -91,14 +91,14 @@ const Checkout = ({ setCheckoutData }) => {
 
 
     const [orderData, setOrderData] = useState({
-        first_name: 'gggggggggggggggggggggggg',
-        last_name: 'gggggggggggggggggggggggg',
-        address: 'gggggggggggggggggggggggg',
-        city: 'gggggggggggggggggggggggg',
-        zip: 'gggggggggggggggggggggggg',
-        phone: 'gggggggggggggggggggggggg',
-        state: 'gggggggggggggggggggg',
-        additional_notes: 'gggggggggggggggggggggggg',
+        first_name: '',
+        last_name: '',
+        address: '',
+        city: '',
+        zip: '',
+        phone: '',
+        state: '',
+        additional_notes: '',
         amount: 0,
         products: [],
     })
@@ -121,19 +121,6 @@ const Checkout = ({ setCheckoutData }) => {
                 setOrderCretaed(res.id)
             }
         }
-
-
-        // if (res.error) {
-        //     if (res.error.name === 'ValidationError') {
-        //         toast.error(res.error.details?.errors[0]?.message || 'Error')
-        //     } else {
-        //         toast.error(res.error.message || 'Error')
-        //     }
-        // } else if (res.jwt) {
-        //     auth.login(res)
-        // } else {
-        //     toast.error('Error: Please try after a minute')
-        // }
         setLoading(false)
 
     }

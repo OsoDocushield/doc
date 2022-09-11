@@ -10,10 +10,6 @@ import Layout from "../src/layouts/Layout";
 import { fromImageToUrl, API_URL } from '../utils/utils'
 
 const Index = ({
-  blogs,
-  imageSlider,
-  banner,
-  products,
   sliders
 }) => {
   return (
@@ -29,6 +25,7 @@ const Index = ({
                     className="single-slider slide-1-style slide-height-2 slide-height-4 d-flex align-items-center"
                     data-background={slide.bg}
                   >
+                    {console.log(slide)}
                     <div
                       className="shape-title shape-title-4 bounce-animate"
                       style={{ zIndex: "unset" }}
@@ -46,28 +43,24 @@ const Index = ({
                               {slide.heading}
                             </h1>
                             <div className="slide-btn">
-                              {slide.shopLink && (
-                                <Link href="/shop">
-                                  <a
-                                    className="btn theme-btn"
-                                    data-animation="fadeInLeft"
-                                    data-delay=".6s"
-                                  >
-                                    shop now
-                                  </a>
-                                </Link>
-                              )}
-                              {slide.categoryLink && (
-                                <Link href="/shop">
-                                  <a
-                                    className="btn white-btn"
-                                    data-animation="fadeInRight"
-                                    data-delay=".9s"
-                                  >
-                                    category
-                                  </a>
-                                </Link>
-                              )}
+                              <Link href={slide.shopLink || ''}>
+                                <a
+                                  className="btn theme-btn"
+                                  data-animation="fadeInLeft"
+                                  data-delay=".6s"
+                                >
+                                  shop now
+                                </a>
+                              </Link>
+                              <Link href={slide.categoryLink || ''}>
+                                <a
+                                  className="btn white-btn"
+                                  data-animation="fadeInRight"
+                                  data-delay=".9s"
+                                >
+                                  category
+                                </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -102,8 +95,8 @@ export async function getStaticProps() {
           bg: fromImageToUrl(each?.attributes?.image?.data?.attributes?.url),
           shapImg: '/img/slider/shape-icon-2.png',
           heading: each?.attributes?.tag_line,
-          shopLink: true,
-          categoryLink: true
+          shopLink: each?.attributes?.shop_button,
+          categoryLink: each?.attributes?.category_button,
         }
       })
     }

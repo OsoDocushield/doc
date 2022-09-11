@@ -41,7 +41,7 @@ function Header({
             </div>
             <div className="col-xl-3 col-lg-6 col-md-6 col-5 col-sm-9 pl-0">
               <div className="header-right f-right">
-                <ul>
+                <ul style={{ display: 'flex' }}>
                   {/* <SearchTrigger /> */}
                   <Profile />
                   <ShopCart />

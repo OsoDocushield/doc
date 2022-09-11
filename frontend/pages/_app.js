@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AllToaster from "../src/components/AllToaser";
 import { AuthProvider } from "../src/context/AuthContext";
 import { CartProvider } from "../src/context/CartConntext";
+import { ContactProvider } from "../src/context/ContactContext";
 import Footer from "../src/layouts/Footer";
 import Header from "../src/layouts/Header";
 import PreLoader from "../src/layouts/PreLoader";
@@ -34,11 +35,13 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {preloader ? <PreLoader /> : <ScrollTop />}
       <AllToaster />
-      <AuthProvider>
-        <CartProvider>
-          <Component {...pageProps} />
-        </CartProvider>
-      </AuthProvider>
+      <ContactProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Component {...pageProps} />
+          </CartProvider>
+        </AuthProvider>
+      </ContactProvider>
     </>
   );
 }

@@ -1,8 +1,66 @@
+import { useState } from "react";
 import Layout from "../src/layouts/Layout";
 import PageTitle from "../src/layouts/PageTitle";
-const Contact = () => {
+import PreLoader from "../src/layouts/PreLoader";
+import { API_URL } from "../utils/utils";
+const initialValue = {
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+}
+const Contact = ({ phone, address, emails, map_location }) => {
+    const [queryData, setQeryData] = useState({ ...initialValue });
+    const [loading, setLoading] = useState(false)
+    function isAllFieldsValid() {
+        let isValid = true
+        if (queryData.name.replaceAll(' ', '') === '') {
+            toast.error('Name field is required')
+            isValid = false
+        }
+        if (queryData.email.replaceAll(' ', '') === '') {
+            toast.error('email field is required')
+            isValid = false
+        }
+        if (queryData.phone.replaceAll(' ', '') === '') {
+            toast.error('phone field is required')
+            isValid = false
+        }
+        if (queryData.subject.replaceAll(' ', '') === '') {
+            toast.error('subject field is required')
+            isValid = false
+        }
+        if (queryData.message.replaceAll(' ', '') === '') {
+            toast.error('message field is required')
+            isValid = false
+        }
+        return isValid
+    }
+    const handleSubmit = async (e) => {
+        setLoading(true)
+        e.preventDefault()
+        if (isAllFieldsValid) {
+            let res = await fetch(`${API_URL}/api/queries`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data: queryData })
+            })
+            res = await res.json()
+            if (res?.id) {
+                setOrderCretaed(res.id)
+            }
+        }
+        setQeryData({ ...initialValue })
+        setLoading(false)
+
+    }
     return (
         <Layout>
+            {loading && <PreLoader />}
             <main>
                 <PageTitle active="Contact" pageHeading="Contact Us" />
 
@@ -16,8 +74,9 @@ const Contact = () => {
                                 <div className="contact text-center mb-30">
                                     <i className="fas fa-envelope" />
                                     <h3>Mail Here</h3>
-                                    <p>Admin@BasicTheme.com</p>
-                                    <p>Info@Themepur.com</p>
+                                    {emails && emails.split(':::').map(each =>
+                                        <p key={each}>{each}</p>
+                                    )}
                                 </div>
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-4">
@@ -25,7 +84,7 @@ const Contact = () => {
                                     <i className="fas fa-map-marker-alt" />
                                     <h3>Visit Here</h3>
                                     <p>
-                                        27 Division St, New York, NY 10002, Jaklina, United Kingpung
+                                        {address}
                                     </p>
                                 </div>
                             </div>
@@ -33,8 +92,9 @@ const Contact = () => {
                                 <div className="contact text-center mb-30">
                                     <i className="fas fa-phone" />
                                     <h3>Call Here</h3>
-                                    <p>+8 (123) 985 789</p>
-                                    <p>+787 878897 87</p>
+                                    {phone && phone.split(':::').map(each =>
+                                        <p key={each}>{each}</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -49,18 +109,18 @@ const Contact = () => {
                                         <p>
                                             <span /> Anything On your Mind
                                         </p>
-                                        <h1>Estimate Your Idea</h1>
+                                        <h1>Send Us Your Query</h1>
                                     </div>
                                 </div>
                                 <div className="col-xl-4 col-lg-3 d-none d-xl-block ">
                                     <div className="section-link mb-80 text-right">
-                                        <a
+                                        {/* <a
                                             className="btn theme-btn"
                                             href="#"
                                             onClick={(e) => e.preventDefault()}
                                         >
                                             <i className="fas fa-phone" /> make call
-                                        </a>
+                                        </a> */}
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +128,7 @@ const Contact = () => {
                                 <form
                                     id="contact-form"
                                     action="#"
-                                    onSubmit={(e) => e.preventDefault()}
+                                    onSubmit={handleSubmit}
                                 >
                                     <div className="row">
                                         <div className="col-lg-6">
@@ -77,6 +137,8 @@ const Contact = () => {
                                                     type="text"
                                                     name="name"
                                                     placeholder="Your Name"
+                                                    value={queryData.name}
+                                                    onChange={e => setQeryData({ ...queryData, name: e.target.value })}
                                                 />
                                             </div>
                                         </div>
@@ -86,6 +148,8 @@ const Contact = () => {
                                                     type="text"
                                                     name="email"
                                                     placeholder="Your Email"
+                                                    value={queryData.email}
+                                                    onChange={e => setQeryData({ ...queryData, email: e.target.value })}
                                                 />
                                             </div>
                                         </div>
@@ -95,6 +159,8 @@ const Contact = () => {
                                                     type="text"
                                                     name="phone"
                                                     placeholder="Your Phone"
+                                                    value={queryData.phone}
+                                                    onChange={e => setQeryData({ ...queryData, phone: e.target.value })}
                                                 />
                                             </div>
                                         </div>
@@ -104,6 +170,8 @@ const Contact = () => {
                                                     type="text"
                                                     name="subject"
                                                     placeholder="Your Subject"
+                                                    value={queryData.subject}
+                                                    onChange={e => setQeryData({ ...queryData, subject: e.target.value })}
                                                 />
                                             </div>
                                         </div>
@@ -115,12 +183,14 @@ const Contact = () => {
                                                     cols={30}
                                                     rows={10}
                                                     placeholder="Your Message"
+                                                    value={queryData.message}
+                                                    onChange={e => setQeryData({ ...queryData, message: e.target.value })}
                                                     defaultValue={""}
                                                 />
                                             </div>
                                             <div className="contact-btn text-center">
                                                 <button className="btn theme-btn" type="submit">
-                                                    get action
+                                                    Send
                                                 </button>
                                             </div>
                                         </div>
@@ -135,7 +205,7 @@ const Contact = () => {
                 <section className="map-area">
                     <div id="contact-map" className="contact-map">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.1085069628666!2d90.42812861449441!3d23.707818884610447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b945a84ee027%3A0xec54e6d513238060!2sSabuj%20Hasan%20Sarker!5e0!3m2!1sen!2sbd!4v1629655323737!5m2!1sen!2sbd"
+                            src={map_location}
                             width="100%"
                             height="100%"
                             style={{ border: "0" }}
@@ -150,3 +220,16 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+export async function getServerSideProps(context) {
+    let url = `${API_URL}/api/contact-us`
+
+    let data = await fetch(url)
+    data = await data.json()
+    return {
+        props: {
+            ...data.data.attributes
+        }
+    }
+}

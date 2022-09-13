@@ -126,7 +126,7 @@ export async function getServerSideProps(context) {
                 return {
                     id: each.id,
                     ...each.attributes,
-                    images: each.attributes.images.data.map(img => img.attributes.url)
+                    images: each.attributes.images.data?.map(img => img.attributes.url) || []
                 }
             }),
             pageInfo: productsData.meta.pagination

@@ -35,14 +35,6 @@
     "long_description": {
       "type": "richtext"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
-    "total_reviews": {
-      "type": "integer",
-      "default": 0
-    },
     "category": {
       "type": "relation",
       "relation": "oneToOne",

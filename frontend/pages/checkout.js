@@ -323,7 +323,7 @@ const Checkout = ({ setCheckoutData }) => {
                                                                             },
                                                                             body: JSON.stringify({ transactionID: id })
                                                                         }).then(e => {
-                                                                            // clear()
+                                                                            clear()
                                                                             router.push(`/order/${orderCretaed}`)
                                                                         }).catch(e => {
                                                                             toast.error('Transaction failed. Please try agin...')

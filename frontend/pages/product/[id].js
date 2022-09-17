@@ -136,7 +136,7 @@ const Details = ({ product }) => {
                                                         <span>Colors</span>
                                                     </div>
                                                     <ul className="shop-link shop-color">
-                                                        {product.colors.map((color) => (
+                                                        {product.colors.map((color, i) => (
                                                             <li key={color}>
                                                                 <a href="#" onClick={(e) => e.preventDefault()}>
                                                                     <span className={color} />
@@ -177,7 +177,7 @@ const Details = ({ product }) => {
                                                 </p>
                                             </div>
                                             <div className="product-info-list variant-item">
-                                                <ul>
+                                                {/* <ul>
                                                     <li className="text-capitalize">
                                                         <span>Brands:</span> {product && product.brand}
                                                     </li>
@@ -197,7 +197,7 @@ const Details = ({ product }) => {
                                                                 : "Out Of Stock"}
                                                         </span>
                                                     </li>
-                                                </ul>
+                                                </ul> */}
                                             </div>
                                             <div className="product-action-details variant-item">
                                                 <div className="product-details-action d-flex">
@@ -283,8 +283,8 @@ const Details = ({ product }) => {
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="review">
                                                     {product.reviews && (
-                                                        product.reviews.map(eachReview => (
-                                                            <div className="desc-text review-text">
+                                                        product.reviews.map((eachReview, i) => (
+                                                            <div className="desc-text review-text" key={i}>
                                                                 <div className="product-commnets">
                                                                     <div className="product-commnets-list mb-25 pb-15">
                                                                         <div className="pro-comments-img">
@@ -301,7 +301,7 @@ const Details = ({ product }) => {
                                                                                 </span>
                                                                             </h4>
                                                                             <div className="pro-rating">
-                                                                                {new Array(eachReview.rating).fill(2).map(e => <i className="far fa-star" />)}
+                                                                                {new Array(eachReview.rating).fill(2).map((e, i) => <i key={i} className="far fa-star" />)}
                                                                             </div>
                                                                             <p>
                                                                                 {eachReview.comment}

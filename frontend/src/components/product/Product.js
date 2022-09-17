@@ -86,7 +86,7 @@ const Product = ({
           <a href="#" onClick={(e) => onClickCart(e)} title="Shoppingb Cart">
             <i className="flaticon-shopping-cart" />
           </a>
-          <a
+          {/* <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
@@ -95,7 +95,7 @@ const Product = ({
             title="Quick View"
           >
             <i className="flaticon-eye" />
-          </a>
+          </a> */}
         </div>
         <div className="sale-tag">
           {product.new && <span className="new">new</span>}

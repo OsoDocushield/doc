@@ -18,7 +18,6 @@ module.exports = {
    */
   bootstrap({ strapi }) {
 
-    console.log(request)
     strapi.db.lifecycles.subscribe({
       models: ['plugin::users-permissions.user'],
 

@@ -232,8 +232,8 @@ const OrderSuccess = ({ id }) => {
                                                                     each.review ?
                                                                         <>
                                                                             <td>
-                                                                                {new Array(each.review.rating).fill(2).map(e => (
-                                                                                    <a href="#" style={{ color: 'red' }}>
+                                                                                {new Array(each.review.rating).fill(2).map((e, i) => (
+                                                                                    <a href="#" style={{ color: 'red' }} key={i}>
                                                                                         <i className="far fa-star" />
                                                                                     </a>
                                                                                 ))}
